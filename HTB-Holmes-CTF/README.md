@@ -1,4 +1,4 @@
-# HTB — Holmes CTF 2025 — Personal Writeups
+# HTB — Holmes CTF 2025 — Writeups
 
 **Author:** `Preetha`  
 **Event:** Hack The Box — Holmes CTF 2025 (team participation)  
