@@ -1,4 +1,4 @@
-# 🕵️ The Card – Holmes CTF (HTB 2025)
+# The Card – Holmes CTF (HTB 2025)
 
 > **Category**: Threat Intelligence, Web Forensics, Log Analysis  
 > **Challenge Focus**: Honeypot analysis, Web shell detection, Malware behavior tracking, Campaign attribution

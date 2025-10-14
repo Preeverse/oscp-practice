@@ -1,4 +1,4 @@
-# 🎯 OSCP / Hack The Box Practice Writeups
+# OSCP / Hack The Box Practice Writeups
 
 Welcome to my personal repository where I document my progress and learning while preparing for the **Offensive Security Certified Professional (OSCP)** certification.
 
@@ -8,11 +8,11 @@ This repo contains writeups of retired Hack The Box (HTB) machines, focusing on:
 - Enumeration workflows
 - Hands-on use of tools like `nmap`, `pspy`, `linpeas`, and more
 
-> 🛡️ **Note**: All machines documented here are retired HTB boxes. No live targets were harmed. Flags and IPs are redacted in compliance with HTB's Terms of Service.
+> **Note**: All machines documented here are retired HTB boxes. No live targets were harmed. Flags and IPs are redacted in compliance with HTB's Terms of Service.
 
 ---
 
-## 📚 Index of Machines
+## Index of Machines
 
 | Machine Name | Difficulty | Writeup Link | Key Techniques |
 |--------------|------------|--------------|----------------|
@@ -21,7 +21,7 @@ This repo contains writeups of retired Hack The Box (HTB) machines, focusing on:
 
 ---
 
-## 🧰 Tools Used
+## Tools Used
 
 - `nmap` – network scanning
 - `gobuster` – directory brute-forcing
@@ -32,7 +32,7 @@ This repo contains writeups of retired Hack The Box (HTB) machines, focusing on:
 
 ---
 
-## 🧠 What I'm Learning
+## What I'm Learning
 
 - OSCP-style post-exploitation methodology
 - Manual enumeration over automation
@@ -41,13 +41,13 @@ This repo contains writeups of retired Hack The Box (HTB) machines, focusing on:
 
 ---
 
-## ✅ Disclaimer
+## Disclaimer
 
 > This repository is for educational purposes only. All machines targeted are from Hack The Box's retired list. Any resemblance to real systems is purely coincidental.
 
 ---
 
-## 🚧 More Coming Soon
+## More Coming Soon
 
 I'll continue adding new boxes as I complete them.
 

@@ -1,4 +1,4 @@
-# 🛠️ The Enduring Echo – Holmes CTF (HTB 2025)
+# The Enduring Echo – Holmes CTF (HTB 2025)
 
 > **Category**: Disk Forensics, Windows Event Log Analysis, Persistence, Lateral Movement  
 > **Challenge Focus**: Disk image analysis, Windows Security event parsing, timeline reconstruction, persistence/script analysis, and internal pivot detection.
@@ -49,13 +49,6 @@ Event ID **4688** (Process Creation) entries include parent/process fields and t
 **How it was found:**  
 The observed pattern—`WmiPrvSE.exe` spawning `cmd.exe` with sequences of remote commands (for example `systeminfo`, `whoami`)—is characteristic of WMI‑based remote execution. The timing, parent→child process relationships, and the `Process Command Line` content in Event ID **4688** match behavior commonly produced by `wmiexec.py` (a WMI remote‑execution utility found in offensive toolkits). These indicators in the parsed logs support the inference that `wmiexec.py` was most likely used.
 
-**Evidence (sanitized indicator):**
-```text
-# Example timeline observation (sanitized)
-2025-08-24T23:00:15.2002604,4688,Microsoft-Windows-Security-Auditing,WmiPrvSE.exe,"WmiPrvSE.exe ...",Werni,HOSTNAME
-# Attacker commands executed via cmd.exe mirror wmiexec.py style remote execution:
-2025-08-24T23:00:15.5000000,4688,Microsoft-Windows-Security-Auditing,cmd.exe,"cmd.exe /c cd && systeminfo",Werni,HOSTNAME
-```
 Note: Event ID 4688 was critical to this analysis because, when command-line auditing is enabled, it includes the Process Command Line field — allowing us to see exact commands and infer the remote-execution tooling used.
 
 ## Q04 – What was the attacker’s IP address? (IPv4 address)
