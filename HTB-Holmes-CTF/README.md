@@ -8,8 +8,7 @@
 
 ## Table of contents
 - [Overview](#overview)
-- [The Card](#the-card)
-- [The Enduring Echo](#the-enduring-echo)
+- [HTB Holmes CTF Challenges](#htb-holmes-ctf-challenges)
 - [Artifacts & evidence](#artifacts--evidence)
 
 ---
@@ -30,17 +29,14 @@ Each challenge sharpened my understanding of how to trace attacks, extract indic
 All artifacts have been sanitized and exported from lab environments. I'm happy to walk through any part of the investigation upon request.
 
 ---
-## [The Card](/HTB-Holmes-CTF/The_Card.md)
+## HTB Holmes CTF Challenges
 
-This challenge involved analyzing web server logs from a honeypot to trace an attacker’s activity.  
-Key tasks included identifying the attacker’s user-agent, detecting web shell deployment, tracking data exfiltration, and mapping threat intelligence indicators using the CogWork platforms.
-
-## [The Enduring Echo](/HTB-Holmes-CTF/The_Enduring_Echo.md)
-
-This challenge focused on forensic investigation of a compromised Windows system.  
-Key objectives included analyzing event logs, detecting remote execution via `wmiexec.py`, identifying persistence mechanisms, user account creation, and attacker pivoting using port proxy techniques.
-
+| Name               | Learning             |                                                                                                                                     | 
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| 🔗[The Card](HTB-Holmes-CTF/The_Card.md)            | Web server log analysis, Honeypot investigation, User-Agent fingerprinting, Web shell detection, Data exfiltration tracking, Threat intelligence mapping, Campaign attribution, CogWork platform usage|
+| 🔗[The Enduring Echo](HTB-Holmes-CTF/The_Enduring_Echo.md) | Windows forensics, Event log analysis, Remote execution detection (wmiexec.py), Persistence mechanism identification, Malicious user account creation, Port proxy pivoting, Registry analysis, MITRE ATT&CK mapping|
 ---
+
 ## Artifacts & evidence
 Key artifacts included:
 - Parsed EVTX CSV exports (`evtx-parsed.csv`) filtered for Security events of interest (e.g., 4688, 4720).  
