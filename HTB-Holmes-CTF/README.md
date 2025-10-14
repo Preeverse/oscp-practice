@@ -33,8 +33,8 @@ All artifacts have been sanitized and exported from lab environments. I'm happy 
 
 | Name               | Learning             |                                                                                                                                     | 
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
-| 🔗[The Card](HTB-Holmes-CTF/The_Card.md)            | Web server log analysis, Honeypot investigation, User-Agent fingerprinting, Web shell detection, Data exfiltration tracking, Threat intelligence mapping, Campaign attribution, CogWork platform usage|
-| 🔗[The Enduring Echo](HTB-Holmes-CTF/The_Enduring_Echo.md) | Windows forensics, Event log analysis, Remote execution detection (wmiexec.py), Persistence mechanism identification, Malicious user account creation, Port proxy pivoting, Registry analysis, MITRE ATT&CK mapping|
+| 🔗[The Card](/HTB-Holmes-CTF/The_Card.md)            | Web server log analysis, Honeypot investigation, User-Agent fingerprinting, Web shell detection, Data exfiltration tracking, Threat intelligence mapping, Campaign attribution, CogWork platform usage|
+| 🔗[The Enduring Echo](/HTB-Holmes-CTF/The_Enduring_Echo.md) | Windows forensics, Event log analysis, Remote execution detection (wmiexec.py), Persistence mechanism identification, Malicious user account creation, Port proxy pivoting, Registry analysis, MITRE ATT&CK mapping|
 ---
 
 ## Artifacts & evidence
