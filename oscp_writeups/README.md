@@ -16,7 +16,7 @@ This repo contains writeups of retired Hack The Box (HTB) machines, focusing on:
 
 | Machine Name | Difficulty | Writeup Link | Key Techniques |
 |--------------|------------|--------------|----------------|
-| Bashed       | Easy       | [bashed.md](./bashed/bashed.md) | Cronjob abuse, SUID, `pspy`, Webshell |
+| Bashed       | Easy       | [bashed.md](/bashed/bashed.md) Cronjob abuse, SUID, `pspy`, Webshell |
 | *Coming soon*| *-*        | *TBD*        | *TBD*          |
 
 ---
