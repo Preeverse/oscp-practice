@@ -36,4 +36,8 @@ Key actions:
 See full writeup: [HTB-Holmes-CTF/README.md](/HTB-Holmes-CTF/README.md)
 
 ---
+## Contact
+- Email: `preethudoss@gmail.com`  
+- LinkedIn: `https://www.linkedin.com/in/preetha-pr/`
 
+---
