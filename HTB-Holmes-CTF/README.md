@@ -8,20 +8,27 @@
 
 ## Table of contents
 - [Overview](#overview)
-- [The Enduring Echo](#the-enduring-echo)
 - [The Card](#the-card)
+- [The Enduring Echo](#the-enduring-echo)
 - [Artifacts & evidence](#artifacts--evidence)
 - [Contact](#contact)
 
 ---
 
 ## Overview
-I participated as a team in the HTB Holmes CTF (2025). The two challenges I personally completed and documented here are:
 
-- **The Card** — forensic triage & log correlation (summary in `The_Card/README.md`)  
-- **The Enduring Echo** — disk forensics, Windows event log parsing, persistence analysis, and pivot detection (detailed in `The_Enduring_Echo/README.md`)
+I participated as part of a team in the **HTB Holmes CTF (2025)**, a Capture the Flag event focused on real-world cyber investigation and threat analysis.  
+I personally completed two challenges — **The Card** and **The Enduring Echo** — which are documented in this repository.
 
-All artifacts are sanitized and exported from lab images. I can demonstrate any step live or provide additional sanitized exports on request.
+These scenarios gave me strong hands-on experience with:
+
+- Log analysis and event correlation  
+- Web and disk forensics  
+- Connecting intelligence across platforms like **honeypots**, **SIEM**, and **forensic tools**
+
+Each challenge sharpened my understanding of how to trace attacks, extract indicators, and link attacker behavior across multiple stages.
+
+All artifacts have been sanitized and exported from lab environments. I'm happy to walk through any part of the investigation upon request.
 
 ---
 ## [The Card](/HTB-Holmes-CTF/The_Card.md)
