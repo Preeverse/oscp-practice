@@ -106,7 +106,7 @@ Made grep search and found out the database name in three log files.
 **Tool used**: CogWork Intel Graph  
 **How**: Start the Docker and visit the first IP address. Filter the entities using “4A4D” (the attacker’s signature) and found out five related campaigns.Filtered for the tag `4A4D`, which revealed 5 linked campaigns.
 
-[View the Linked Campaigns for 4A4D tag](\arifacts\the_card\linked_campaigns.png)
+[View the Linked Campaigns for 4A4D tag](/HTB-Holmes-CTF/arifacts/the_card/linked_campaigns.png)
 
 ---
 

@@ -1,7 +1,10 @@
 # Preetha — Cybersecurity Portfolio
 
-**Preetha** — Cybersecurity professional | Threat Detection & Incident Response | CompTIA Security+, CySA+, PenTest+  
-(Linked in resume: CompTIA Security+ 2024 • CySA+ 2025 • PenTest+ 2025 • OSCP (in progress))
+**Hi I'm Preetha** 
+
+I’m a passionate Cybersecurity enthusiast with a keen interest in Threat Detection, Incident Response and Penetration Testing.  
+I have earned the following certifications to validate my skills:  
+| CompTIA Security+ | CySA+ | PenTest+ | 
 
 ---
 

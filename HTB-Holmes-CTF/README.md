@@ -33,7 +33,7 @@ HTB-Holmes-CTF/
 ├── README.md
 ├── The_Card.md
 │ ├── artifacts/
-│ │ ├── screenshot-card-1.png
+│ │ ├── linked_campaigns.png
 └── The_Enduring_Echo.md
 ├── README.md
 ├── artifacts/
@@ -45,7 +45,10 @@ HTB-Holmes-CTF/
 └── notes.txt
 ```
 ---
-## The Card
+## [The Card](/HTB-Holmes-CTF/The_Card.md)
+
+This challenge involved analyzing web server logs from a honeypot to trace an attacker’s activity.  
+Key tasks included identifying the attacker’s user-agent, detecting web shell deployment, tracking data exfiltration, and mapping threat intelligence indicators using the CogWork platforms.
 
 ## The Enduring Echo
 ---
