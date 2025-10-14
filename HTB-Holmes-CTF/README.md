@@ -11,7 +11,6 @@
 - [The Card](#the-card)
 - [The Enduring Echo](#the-enduring-echo)
 - [Artifacts & evidence](#artifacts--evidence)
-- [Contact](#contact)
 
 ---
 
@@ -41,4 +40,11 @@ Key tasks included identifying the attacker’s user-agent, detecting web shell 
 This challenge focused on forensic investigation of a compromised Windows system.  
 Key objectives included analyzing event logs, detecting remote execution via `wmiexec.py`, identifying persistence mechanisms, user account creation, and attacker pivoting using port proxy techniques.
 
+---
+## Artifacts & evidence
+Key artifacts included:
+- Parsed EVTX CSV exports (`evtx-parsed.csv`) filtered for Security events of interest (e.g., 4688, 4720).  
+- Timeline exports (`timeline.csv`) used in Timeline Explorer.  
+- Extracted persistence script (`JM.ps1`) and scheduled task XML screenshot.  
+- Screenshots of timeline and relevant event filters.
 ---
