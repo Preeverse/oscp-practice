@@ -23,7 +23,7 @@ This repository contains hands-on labs, CTF writeups, and automation artifacts t
 
 ## Contents (click folder)
 - [HTB-Holmes-CTF](/HTB-Holmes-CTF/) — HTB Holmes CTF (2025) writeup: forensic analysis, reverse engineering, attacker mapping.
-- [OSCP_Writeups](/bashed/README.md) — OSCP writeups for machines in Hack The Box platform.
+- [OSCP_Writeups](/oscp_writeups/README.md) — OSCP writeups for machines in Hack The Box platform.
 ---
 
 ## Highlighted project — HTB Holmes CTF (2025)
