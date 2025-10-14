@@ -1,10 +1,16 @@
 # Preetha — Cybersecurity Portfolio
 
-**Hi I'm Preetha** 
+# Hi, I'm Preetha 👋
 
-I’m a passionate Cybersecurity enthusiast with a keen interest in Threat Detection, Incident Response and Penetration Testing.  
-I have earned the following certifications to validate my skills:  
-| CompTIA Security+ | CySA+ | PenTest+ | 
+I’m a passionate Cybersecurity enthusiast with a keen interest in **Threat Detection**, **Incident Response**, and **Penetration Testing**.
+
+I’ve earned the following certifications to validate my skills:
+
+| Certification         | Year   |
+|-----------------------|--------|
+| CompTIA Security+     | 2024   |
+| CompTIA CySA+         | 2025   |
+| CompTIA PenTest+      | 2025   |
 
 ---
 
@@ -16,13 +22,8 @@ This repository contains hands-on labs, CTF writeups, and automation artifacts t
 ---
 
 ## Contents (click folder)
-- `HTB-Holmes-CTF/` — HTB Holmes CTF (2025) writeup: forensic analysis, reverse engineering, attacker mapping.
-- `Threat-Detection/` — Splunk-based threat detection labs, MITRE ATT&CK mapping, honeypot logs and detection rules.
-- `Vulnerability-Scanning/` — Nessus & ZAP scan reports and remediation notes.
-- `PenTest/` — Penetration testing walkthroughs (recon, exploitation, post-exploitation).
-- `Incident-Response/` — Playbooks and scripts for triage, containment, and root-cause analysis.
-- `scripts/` — Useful scripts (PowerShell log parsers, Bash automation, Splunk queries).
-
+- [HTB-Holmes-CTF](/HTB-Holmes-CTF/) — HTB Holmes CTF (2025) writeup: forensic analysis, reverse engineering, attacker mapping.
+- [OSCP_Writeups](/bashed/README.md) — OSCP writeups for machines in Hack The Box platform.
 ---
 
 ## Highlighted project — HTB Holmes CTF (2025)
@@ -32,7 +33,7 @@ Key actions:
 - Reverse engineering: simple scripts reversed to reveal attacker logic.
 - Detection: correlated IoCs and mapped activity to MITRE ATT&CK techniques.
 
-See full writeup: `HTB-Holmes-CTF/README.md`
+See full writeup: [HTB-Holmes-CTF/README.md](/HTB-Holmes-CTF/README.md)
 
 ---
 
