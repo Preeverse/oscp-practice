@@ -15,6 +15,7 @@ I’ve earned the following certifications to validate my skills:
 
 ## Quick overview
 This repository contains hands-on labs, CTF writeups, and automation artifacts that demonstrate skills in SIEM (Splunk), vulnerability scanning (Nessus, ZAP), network and web penetration testing, and incident response. These projects map directly to the experience listed on my resume and were completed as part of CompTIA lab tracks and HTB challenges.
+
 ---
 
 ## Contents (click folder)
