@@ -1,4 +1,4 @@
-# Preetha — Cybersecurity Portfolio
+# Preetha's — Cybersecurity Portfolio
 
 # Hi, I'm Preetha 👋
 
