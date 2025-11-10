@@ -31,7 +31,7 @@ Reusable HTB writeup template (use for each box)
     no error thrown when trying to login with mail id without @domain name but it does not login
     invalid cred error thrown if wrong mail id with @domain.com is passed
 
-    upon successuful user login- login.js initiates the gallery.js script and navigates to gallery file http://10.129.146.22/js/gallery.js Headers Cookie: XSRF token Referer http://10.129.146.22/gallery three cookies under cookies tab found intentions_session: toke: XSRF_token Note: intentions is the HTB box name
+    upon successuful user login- login.js initiates the gallery.js script and navigates to gallery file http://"IP"/js/gallery.js Headers Cookie: XSRF token Referer http://"IP"/gallery three cookies under cookies tab found intentions_session: toke: XSRF_token Note: intentions is the HTB box name
     upon clicking gallery tab ->gallery.js initiates images file and loads all .jpg files from /storage folder filename : /storage/architecture/leopold-baskarad-BcIr38tPxJ8-unsplash.jpg there are subfolders like animals, architecture under storage folder to load respective grouped images
     /api/v1/auth/login /api/v1/auth/register
     upon clicking Feed tab listed under Home page we see gallery.js initiated feed file filename : /api/v1/gallery/user/feed Api endpoint exposed
